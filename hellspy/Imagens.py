@@ -54,12 +54,7 @@ IMAGENS_PORTA = [[pygame.image.load(os.path.join('imagem', 'p1.png')),
 IMAGENS_VIDA = [pygame.image.load(os.path.join('imagem','vida1.png')),
                 pygame.image.load(os.path.join('imagem','vida2.png'))]
 
-IMAGENS_BACKGROUND = [pygame.image.load(os.path.join('imagem', 'bg.png')),
-                      pygame.image.load(os.path.join('imagem', 'CENARIO1.png')),
-                      pygame.image.load(os.path.join('imagem', 'CENARIO2.png')),
-                      pygame.image.load(os.path.join('imagem', 'CENARIO3.png')),
-                      pygame.image.load(os.path.join('imagem', 'CENARIO4.png')),
-                      pygame.image.load(os.path.join('imagem', 'CENARIO5.png'))]
+IMAGENS_BACKGROUND = pygame.image.load(os.path.join('imagem', 'bg.png'))
 
 IMAGENS_SANGUE = [[pygame.image.load(os.path.join('imagem', 'S1.png'))],#Caso seja necessário mudar o tamanho da imagem pode-se utilizar pygame.transform.scale2x(...)
                  [pygame.image.load(os.path.join('imagem', 'S2.png'))],

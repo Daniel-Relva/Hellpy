@@ -6,6 +6,8 @@ import math
 from Personagens import *
 from Cenarios import *
 
+#Right, Left, Up, Down
+
 def geraro(contorno):
   number_of_O = random.randrange(1,4)
   objetos = []
@@ -31,8 +33,8 @@ def gerarv(contorno):
     viloes.append(vilao)
   return viloes
 
-def desenhar_tela(tela, heroi, viloes, contorno, objetos, poderes, placar, portal, portal_gera,bk):
-  bk.desenharbk(tela)
+def desenhar_tela(tela, heroi, viloes, contorno, objetos, poderes, placar, portal, portal_gera):
+  tela.fill((0,0,0))
   heroi.desenhar(tela)
   contorno.desenharc(tela)
   for v in viloes:
@@ -53,7 +55,7 @@ def iniciar_jogo(tela):
   mensagem = fonte.render(texto,False,'White')
   tela.blit(mensagem,(0,0))
   pygame.display.update()
-
+  
 def gerar_jogo():
   heroi = Heroi(230,350,3,0)
   contorno = Contorno()
@@ -62,7 +64,10 @@ def gerar_jogo():
   
   return heroi, contorno, viloes, objetos
 
-def teclado_input(evento,poderes,heroi):
+def teclado_input(evento,poderes,heroi, move, spin, rodando):
+  move_clockwise,move_counterclock = spin
+  move_right,move_left,move_up,move_down = move
+
   if evento.type == pygame.QUIT:
      rodando = False
      pygame.quit()
@@ -98,7 +103,8 @@ def teclado_input(evento,poderes,heroi):
       move_counterclock = False
 
   move = [move_right,move_left,move_up,move_down]
-  return rodando, move, poderes
+  spin = [move_clockwise,move_counterclock]
+  return rodando, move, poderes, spin
   
 def batida(obj1, objetos, move, heroi,contador,colisao, bateu):
   

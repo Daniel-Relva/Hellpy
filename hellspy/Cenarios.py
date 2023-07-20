@@ -145,17 +145,6 @@ class Placar:
 ##-------------------------------------------------------------------------------------------
 ##-------------------------------------------------------------------------------------------
 
-class BK:
-  IMGbk = IMAGENS_BACKGROUND
-
-  def _init_(self, numero):
-    self.numero = numero 
-    self.imagensbk = self.IMGbk
-    self.imagembk = self.imagensbk[self.numero]
-        
-
-  def desenharbk(self, tela):
-    tela.blit(self.imagembk,(0,0))
 
 
 

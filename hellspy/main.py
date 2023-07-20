@@ -15,18 +15,20 @@ def main():
   #Clockwise, Counterclockwise
   spin = [False,False]
   bateu = [False,False,False,False]
-
+  colisao = 0
+  poderes = []
+  pontos = 0
   ponto_maior = 0
   tira_vida = False
-
+  cont_coli = 0
+  cont_coli2 = 0
+  colisao_v_h = []
+  colisao_v_p = []
   portal = Portal(random.randrange(0,TELA_LARGURA-100),random.randrange(0,TELA_ALTURA-100))
   portal_gera = False
   contador = 0
   espera = True
-  rodando = True
-  jogando = True
-  Numero = random.randrange(0,len(IMAGENS_BACKGROUND))
-  bk = BK(Numero)
+  
 
   tela = pygame.display.set_mode((TELA_LARGURA, TELA_ALTURA))
   relogio = pygame.time.Clock()
@@ -38,37 +40,18 @@ def main():
 
         espera = False
   
-  partida = 0
-  while rodando:
-    if partida > 0:
-      #scoreboard(pontos,ponto_maior)
-      pass
-
+  jogando = True
+  rodando = True
+  while jogando:
     heroi, contorno, viloes, objetos = gerar_jogo()
-    
-    #Zera a variáveis
-    colisao = 0
-    poderes = []
-    pontos = 0
-    cont_coli = 0
-    cont_coli2 = 0
-    colisao_v_h = []
-    colisao_v_p = []
-
-    while jogando:
-
-
-      if heroi.vida ==0:
-          partida += 1
-          break   
-
+    while rodando:
       relogio.tick(30)
 
       #---------
       # INPUT
       #--------
       for evento in pygame.event.get():
-        rodando, move, poderes = teclado_input(evento,poderes,heroi)
+        rodando, move, poderes,spin = teclado_input(evento,poderes,heroi,move, spin,rodando)
 
       #---------
       #Colisão
@@ -150,7 +133,9 @@ def main():
 
       placar = Placar(heroi.vida,pontos)
 
-
+      if heroi.vida ==0:
+          #termina o jogo e chama o ranking
+          pass
 
       if len(viloes)==0:
         portal_gera = True
@@ -160,11 +145,12 @@ def main():
           print('entrou')
           if heroi.vida < 3:
             heroi.vida += 1
+          break
         #atualizar toda a pagina e se tiver coisa de nivel aumentar o nivel
         
 
 
-      desenhar_tela(tela, heroi, viloes, contorno, objetos, poderes, placar, portal, portal_gera, bk)  
+      desenhar_tela(tela, heroi, viloes, contorno, objetos, poderes, placar, portal, portal_gera)  
 ##----------------------------------------------------------------------------------------
 main()
 
